@@ -19,7 +19,7 @@ var client = new Client();
 
 class StartController extends TelegramBaseController {
     helloResponse($) {
-        $.sendMessage('Hi there, I\'m Newstify, I will send you the latest articles from the media that is available.\nSend /news to get started.\n\nBased on newstify v1.0.0 by Roger Stach.')
+        $.sendMessage('Hi there, I\'m Newstify, I will send you the top/latest headlines from the media that is available.\nSend /news to get started.\n\nBased on newstify v1.0.0 by Roger Stach.')
     }
 
     listResponse($) {
@@ -37,10 +37,11 @@ class StartController extends TelegramBaseController {
 class NewsController extends TelegramBaseController {
 
     askMedia($) {
-      $.sendMessage('List of media: \n - Buzzfeed - buzzfeed\n - Daily Mail - dailymail\n - MTV - mtv\n - National Geographic - natgeo\n - TechCrunch - techcrunch\n - The New York Times - newyork\n - The Next Web - thenextweb\n - The Verge - theverge')
+      $.sendMessage('List of media: \n - Buzzfeed - buzzfeed\n - Daily Mail - dailymail\n - MTV - mtv\n - National Geographic - natgeo\n - TechCrunch - techcrunch\n - The New York Times - newyork\n - The Next Web - thenextweb\n - The Verge - theverge\n\nEverytime you choose the media, you\'ll need to type /news again and choose the media that you want. Over and over again.')
       $.waitForRequest
           .then($ => {
             if ($.message.text == 'buzzfeed') {
+                $.sendMessage("Latest Buzzfeed headlines : ")
               client.get("https://newsapi.org/v1/articles?source=buzzfeed&sortBy=latest&apiKey=c95262ea5eed4b61b6cb31ac2f1567af", function (data) {              
                 'use strict';
                 var url_1 = data.articles[0].url,
@@ -74,7 +75,8 @@ class NewsController extends TelegramBaseController {
                     $.sendMessage(title_9 + ' - ' + url_9 + '\n');
                     $.sendMessage(title_10 + ' - ' + url_10 + '\n');
               });
-            } else if ($.message.text == '!dailymail'){
+            } else if ($.message.text == 'dailymail'){
+                $.sendMessage("Latest Daily Mail headlines :")
               client.get("https://newsapi.org/v1/articles?source=daily-mail&sortBy=latest&apiKey=c95262ea5eed4b61b6cb31ac2f1567af", function (data) {
                 'use strict';
                 var url_1 = data.articles[0].url,
@@ -108,7 +110,8 @@ class NewsController extends TelegramBaseController {
                     $.sendMessage(title_9 + ' - ' + url_9 + '\n');
                     $.sendMessage(title_10 + ' - ' + url_10 + '\n');
               });
-            } else if ($.message.text == '!mtv'){
+            } else if ($.message.text == 'mtv'){
+                $.sendMessage("Latest MTV headlines : ")
               client.get("https://newsapi.org/v1/articles?source=mtv-news&sortBy=latest&apiKey=c95262ea5eed4b61b6cb31ac2f1567af", function (data) {
                 'use strict';
                 var url_1 = data.articles[0].url,
@@ -142,8 +145,9 @@ class NewsController extends TelegramBaseController {
                     $.sendMessage(title_9 + ' - ' + url_9 + '\n');
                     $.sendMessage(title_10 + ' - ' + url_10 + '\n');
               });
-            } else if ($.message.text == '!natgeo'){
-              client.get("https://newsapi.org/v1/articles?source=national-geographic&sortBy=latest&apiKey=c95262ea5eed4b61b6cb31ac2f1567af", function (data) {
+            } else if ($.message.text == 'natgeo'){
+                $.sendMessage("Top National Geographic headlines : ")
+              client.get("https://newsapi.org/v1/articles?source=national-geographic&sortBy=top&apiKey=c95262ea5eed4b61b6cb31ac2f1567af", function (data) {
                 'use strict';
                 var url_1 = data.articles[0].url,
                     url_2 = data.articles[1].url,
@@ -176,7 +180,8 @@ class NewsController extends TelegramBaseController {
                     $.sendMessage(title_9 + ' - ' + url_9 + '\n');
                     $.sendMessage(title_10 + ' - ' + url_10 + '\n');
               });
-            } else if ($.message.text == '!techcrunch'){
+            } else if ($.message.text == 'techcrunch'){
+                $.sendMessage("Latest TechCrunch headlines : ")
               client.get("https://newsapi.org/v1/articles?source=techcrunch&sortBy=latest&apiKey=c95262ea5eed4b61b6cb31ac2f1567af", function (data) {
                 'use strict';
                 var url_1 = data.articles[0].url,
@@ -210,8 +215,9 @@ class NewsController extends TelegramBaseController {
                     $.sendMessage(title_9 + ' - ' + url_9 + '\n');
                     $.sendMessage(title_10 + ' - ' + url_10 + '\n');
               });
-            } else if ($.message.text == '!newyork'){
-              client.get("https://newsapi.org/v1/articles?source=the-new-york-times&sortBy=latest&apiKey=c95262ea5eed4b61b6cb31ac2f1567af", function (data) {
+            } else if ($.message.text == 'newyork'){
+                $.sendMessage("Top New York Times headlines : ")
+              client.get("https://newsapi.org/v1/articles?source=the-new-york-times&sortBy=top&apiKey=c95262ea5eed4b61b6cb31ac2f1567af", function (data) {
                 'use strict';
                 var url_1 = data.articles[0].url,
                     url_2 = data.articles[1].url,
@@ -244,8 +250,9 @@ class NewsController extends TelegramBaseController {
                     $.sendMessage(title_9 + ' - ' + url_9 + '\n');
                     $.sendMessage(title_10 + ' - ' + url_10 + '\n');
               });
-            } else if ($.message.text == '!the-next-web'){
-              client.get("https://newsapi.org/v1/articles?source=the-new-york-times&sortBy=latest&apiKey=c95262ea5eed4b61b6cb31ac2f1567af", function (data) {
+            } else if ($.message.text == 'thenextweb'){
+                $.sendMessage("Latest The Next Web headlines : ")
+              client.get("https://newsapi.org/v1/articles?source=the-next-web&sortBy=latest&apiKey=c95262ea5eed4b61b6cb31ac2f1567af", function (data) {
                 'use strict';
                 var url_1 = data.articles[0].url,
                     url_2 = data.articles[1].url,
@@ -278,7 +285,8 @@ class NewsController extends TelegramBaseController {
                     $.sendMessage(title_9 + ' - ' + url_9 + '\n');
                     $.sendMessage(title_10 + ' - ' + url_10 + '\n');
               });
-            } else if ($.message.text == 'the-verge'){
+            } else if ($.message.text == 'theverge'){
+                $.sendMessage("Latest The Verge headlines : ")
               client.get("https://newsapi.org/v1/articles?source=the-verge&sortBy=latest&apiKey=c95262ea5eed4b61b6cb31ac2f1567af", function (data) {
                 'use strict';
                 var url_1 = data.articles[0].url,
@@ -313,7 +321,7 @@ class NewsController extends TelegramBaseController {
                     $.sendMessage(title_10 + ' - ' + url_10 + '\n');
               });
             } else {
-              $.sendMessage(`Hi ${$.message.text}!`)
+              $.sendMessage(`That media is not available.`)
             }
           })
     }
