@@ -19,11 +19,11 @@ var client = new Client();
 
 class StartController extends TelegramBaseController {
     helloResponse($) {
-        $.sendMessage('This bot will send you the latest top news.')
+        $.sendMessage('Hi there, I\'m Newstify, I will send you the latest articles from the media that is available.\nSend /news to get started.\n\nBased on newstify v1.0.0 by Roger Stach.')
     }
 
     listResponse($) {
-        $.sendMessage('Available Commands:\n- /buzzfeed\n- /help')
+        $.sendMessage('This command is useless, try /news.')
     }
 
     get routes() {
@@ -37,7 +37,7 @@ class StartController extends TelegramBaseController {
 class NewsController extends TelegramBaseController {
 
     askMedia($) {
-      $.sendMessage('List of media: \n - Buzzfeed - /buzzfeed\n - Daily Mail - /dailymail\n - MTV - /mtv\n - National Geographic - /natgeo\n - TechCrunch - /techcrunch\n - The New York Times - /newyork\n - The Next Web - /thenextweb\n - The Verge\n - /theverge\nWired - /wired')
+      $.sendMessage('List of media: \n - Buzzfeed - /buzzfeed\n - Daily Mail - /dailymail\n - MTV - /mtv\n - National Geographic - /natgeo\n - TechCrunch - /techcrunch\n - The New York Times - /newyork\n - The Next Web - /thenextweb\n - The Verge - /theverge')
       $.waitForRequest
           .then($ => {
             if ($.message.text == 'buzzfeed') {
