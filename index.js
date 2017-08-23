@@ -1,8 +1,4 @@
-/*
-* © Roger D. Stach 2017
-* Licensed under MIT
-*/
-'use strict'
+'use strict';
 
 const Telegram = require('telegram-node-bot');
 var Client = require('node-rest-client').Client;
